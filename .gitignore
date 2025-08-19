@@ -1,2 +1,4 @@
 .venv
-shell_script/*.png
+myproject/modellayer/shell_script/*.png
+.vscode/
+myproject/querysets/shell_script/*.png

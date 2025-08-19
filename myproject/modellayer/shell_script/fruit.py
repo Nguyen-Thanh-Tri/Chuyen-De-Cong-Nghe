@@ -1,4 +1,4 @@
-from modellayer import Fruit
+from modellayer.models import Fruit
 fruit = Fruit.objects.create(name="Apple")
 fruit.name = "Pear"
 fruit.save()
