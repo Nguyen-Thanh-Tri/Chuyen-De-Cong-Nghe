@@ -1,4 +1,6 @@
 from django.urls import path
+from viewlayer.views import HelloView, AboutView
+from viewlayer.views import BookListView
 
 from . import views
 app_name ="viewlayer"
@@ -24,4 +26,13 @@ urlpatterns = [
     path('myview/', views.my_view, name='view'),#/myview/?x=1
     #http404
     path('detail/', views.my_view, name='detail'),#/detail/?x=1
+
+
+#CLASS_BASE VIEW
+    path("hello/", HelloView.as_view(), name="hello"),
+    #templatview
+    path("about1/", AboutView.as_view(), name="about"),
+
+    #listview
+     path("books/", BookListView.as_view(), name="book-list"),
 ]

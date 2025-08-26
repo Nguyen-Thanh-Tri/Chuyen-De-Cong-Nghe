@@ -51,3 +51,31 @@ def my_custom_404(request, exception):
 
 def my_custom_500(request):
     return render(request, "500.html", {}, status=500)
+
+#---------------------------------------------------------------------
+#CLASS_BASE VIEW
+from django.views import View
+
+class HelloView(View):
+    def get(self, request):
+        return HttpResponse("Hello World")
+    
+#templatview
+from django.views.generic import TemplateView, ListView
+
+class AboutView(TemplateView):
+    template_name = "about.html"
+
+#listview
+from .models import Book
+
+class BookListView(ListView):
+    model = Book
+    template_name = "book_list.html"   
+    context_object_name = "books"
+
+import asyncio
+class AsyncHelloView(View):
+    async def get(self, request):
+        await asyncio.sleep(1)  
+        return HttpResponse("Hello async world!")
