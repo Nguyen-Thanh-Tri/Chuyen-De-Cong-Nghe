@@ -16,8 +16,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-
+from viewlayer import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('viewlayer.urls')),
 ]
+#custom erro views
+handler404 = "viewlayer.views.my_custom_404"
+handler500 = "viewlayer.views.my_custom_500"

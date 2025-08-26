@@ -1,8 +1,9 @@
 from django.urls import path
 
 from . import views
-
+app_name ="viewlayer"
 urlpatterns = [
+#CONFurl
     path('', views.home, name='home'),       # http://127.0.0.1:8000/
     path('about/', views.about, name='about'), # http://127.0.0.1:8000/about/
 
@@ -14,4 +15,13 @@ urlpatterns = [
 
     #converters vs slug
     path('article/<int:year>/<slug:slug>/', views.article_detail, name='article-detail'),
+
+
+#VIEWFUNC
+    #basic
+    path('time/', views.current_datetime, name='time'),
+    #response error
+    path('myview/', views.my_view, name='view'),#/myview/?x=1
+    #http404
+    path('detail/', views.my_view, name='detail'),#/detail/?x=1
 ]
