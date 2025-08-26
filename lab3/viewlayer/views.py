@@ -1,6 +1,7 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseNotFound
 
+#CONFURL
 # Create your views here.
 def home(request):
     return HttpResponse("Xin chào! Đây là trang Home của app viewlayer.")
@@ -18,3 +19,35 @@ def month_archive(request, year, month):
 #converters vs slug
 def article_detail(request, year, slug):
     return HttpResponse(f"Xem bài viết: {slug}, năm {year}")
+
+#-----------------------------------------------------------------------------------------------------------------------
+#VIEWFUNC
+import datetime
+
+#basic
+def current_datetime(request):
+    now = datetime.datetime.now()
+    html = '<html lang="en"><body>It is now %s.</body></html>' % now
+    return HttpResponse(html)
+
+#response error
+def my_view(request):
+    if request.GET.get("x") == "1":
+        return HttpResponse("<h1>OK</h1>")
+    else:
+        return HttpResponseNotFound("<h1>Page not found</h1>")
+    
+#http404
+from django.http import Http404
+
+def detail(request, item_id):
+    if item_id != 1:   
+        raise Http404("Item does not exist")
+    return HttpResponse("Item exists")
+
+#custom error views
+def my_custom_404(request, exception):
+    return render(request, "404.html", {}, status=404)
+
+def my_custom_500(request):
+    return render(request, "500.html", {}, status=500)
